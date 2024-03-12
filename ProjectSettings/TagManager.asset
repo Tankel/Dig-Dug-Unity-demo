@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Surface
+  - Tile
+  - Mask
+  - Yellow Dirt
+  - Orange Dirt
+  - Red Dirt
+  - Wine Dirt
+  - Rock
+  - TileDig
+  - Enemy
+  - Weapon
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - FreeTiles
+  - Water
+  - UI
+  - Player
+  - Weapon
+  - Enemies
+  - Tiles
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

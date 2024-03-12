@@ -1,0 +1,63 @@
+using UnityEngine;
+using UnityEngine.Tilemaps;
+using System.Collections.Generic;
+
+public class TilemapMask : MonoBehaviour
+{
+    public GameObject newMaskObject;
+    public Tilemap tilemap;
+    void Awake()
+    {
+        ChangeColliderToCircle(new Vector3Int(0,0,0));
+    }
+
+    private void ChangeColliderToCircle(Vector3Int cellPosition)
+    {
+        TileBase tile = tilemap.GetTile(cellPosition);
+        if (tile != null)
+        {
+            tilemap.SetColliderType(cellPosition, Tile.ColliderType.Sprite); // Establece el ColliderType a Sprite para que se pueda colocar un Collider2D en la baldosa
+
+            // Crea y agrega un componente CircleCollider2D al GameObject de la baldosa
+            GameObject tileGameObject = tilemap.gameObject;
+            CircleCollider2D circleCollider = tileGameObject.AddComponent<CircleCollider2D>();
+            circleCollider.radius = 0.5f; // Ajusta el radio según sea necesario
+        }
+    }
+    public void ChangeMask(Vector3Int cellPosition, int direction)
+    {
+        if (direction == 0) cellPosition.x += 1;
+        else if (direction == 1) cellPosition.y += 1;
+        else if (direction == 2) cellPosition.x -= 1;
+        else if (direction == 3) cellPosition.y -= 1;
+
+        Vector3Int tilemapOrigin = new Vector3Int(0, 9, 0);
+        Vector3Int[] adjacentCellPositions = new Vector3Int[]
+        {
+            cellPosition*2 + tilemapOrigin,
+            cellPosition*2 + new Vector3Int(-1, 0, 0) + tilemapOrigin, // Derecha
+            cellPosition*2 + new Vector3Int(0, -1, 0) + tilemapOrigin, // Arriba
+            cellPosition*2 + new Vector3Int(-1, -1, 0) + tilemapOrigin  // Diagonal superior derecha
+        };
+
+        Vector3Int adjustedCellPosition = cellPosition;
+        Quaternion maskRotation = Quaternion.identity;
+
+        if (direction == 2 || direction == 0)
+        {
+            maskRotation = Quaternion.Euler(0, 0, -90);
+        }
+
+        foreach (var adjCellPos in adjacentCellPositions)
+        { 
+            DisableCollider(adjCellPos);
+        }
+
+        Instantiate(newMaskObject, cellPosition, maskRotation);
+    }
+
+    private void DisableCollider(Vector3Int cellPosition)
+    {
+        tilemap.SetColliderType(cellPosition, Tile.ColliderType.None);
+    }
+}
