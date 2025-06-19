@@ -31,14 +31,3 @@ Click on the image below to watch a gameplay demo:
    ```
 3. Open **Unity Hub**, click **Add**, select the cloned folder, then launch the project.  
 4. Press **Play** in the Unity Editor to start.
-
-## Future Development
-
-- 🛠️ Add more levels with new tunnel layouts and hazards  
-- 🎨 Refine animations and introduce particle effects when enemies pop  
-- 🔊 Integrate looping background music and sound effects  
-- 📦 Build standalone executables for Windows & macOS  
-
-## Contributions
-
-Contributions are very welcome! If you find a bug or have a suggestion, please open an issue or submit a pull request. For major changes, start a discussion in Issues first.
